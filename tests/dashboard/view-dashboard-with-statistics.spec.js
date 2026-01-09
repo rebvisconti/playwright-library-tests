@@ -1,9 +1,9 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { DashboardPage } from '../POM/dashboard.js';
+import { LoginPage } from '../../POM/login.js';
+import { DashboardPage } from '../../POM/dashboard.js';
 
-test.describe('CT-FE-006 - view-dashboard-with-statistics', () => {
+test.describe('CT-FE-006: View Dashboard with Statistics', () => {
 
   test.beforeEach(async ({ page }) => {
     
@@ -17,7 +17,7 @@ test.describe('CT-FE-006 - view-dashboard-with-statistics', () => {
   
   });
 
-  test('Validate complete loading of the Dashboard.', async ({ page }) => {
+  test('CT-FE-006: View Dashboard with Statistics', async ({ page }) => {
     const dashboard = new DashboardPage(page);
 
     await dashboard.validarEstatisticasVisiveis();

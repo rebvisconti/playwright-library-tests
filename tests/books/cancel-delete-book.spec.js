@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { BookDetailsPage } from '../POM/bookdetailspage.js';
+import { LoginPage } from '../../POM/login.js';
+import { BookDetailsPage } from '../../POM/bookdetailspage.js';
 
-test.describe('CT-FE-015 - Cancel Book Deletion', () => {  
+test.describe('CT-FE-015: Cancel Book Deletion', () => {  
     test.beforeEach(async ({ page }) => {
         const login = new LoginPage(page);
         await page.goto('http://localhost:3000/login.html');
@@ -11,7 +11,7 @@ test.describe('CT-FE-015 - Cancel Book Deletion', () => {
         await login.clicarEntrar();
     });
 
-    test('CT-FE-015 - Cancel Book Deletion', async ({ page }) => {
+    test('CT-FE-015: Cancel Book Deletion', async ({ page }) => {
     await page.addInitScript(() => {
     localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));
   });

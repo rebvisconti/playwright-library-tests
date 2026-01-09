@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { BookDetailsPage } from '../POM/bookdetailspage.js';
+import { LoginPage } from '../../POM/login.js';
+import { BookDetailsPage } from '../../POM/bookdetailspage.js';
 
-test.describe('CT-FE-014 - Delete Book Successfully', () => {  
+test.describe('CT-FE-014: Delete Book Successfully', () => {  
     test.beforeEach(async ({ page }) => {
         const login = new LoginPage(page);
         await page.goto('http://localhost:3000/login.html');
@@ -11,7 +11,7 @@ test.describe('CT-FE-014 - Delete Book Successfully', () => {
         await login.clicarEntrar();
     });
 
-test.describe('CT-FE-014 - Delete Book Successfully', () => {
+test.describe('CT-FE-014: Delete Book Successfully', () => {
 
     test('Validar confirmação e deletar livro com sucesso', async ({ page }) => {
 

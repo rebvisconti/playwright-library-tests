@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { BookDetailsPage } from '../POM/bookdetailspage.js';
-import { capturarAlert } from '../helpers/capturaralert';
+import { LoginPage } from '../../POM/login.js';
+import { BookDetailsPage } from '../../POM/bookdetailspage.js';
+import { capturarAlert } from '../../helpers/capturaralert.js';
 
-test.describe('CT-FE-011 - Add favorite book', () => {  
+test.describe('CT-FE-012: Remove Book from Favorites', () => {  
 test.beforeEach(async ({ page }) => {
     const login = new LoginPage(page);
 
@@ -15,10 +15,10 @@ test.beforeEach(async ({ page }) => {
   });
 
 
-test('CT-FE-011 - Add favorite book', async ({ page }) => {
-
+test('CT-FE-012: Remove Book from Favorites', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));
+    localStorage.setItem('favoritos', JSON.stringify([1]));
   });
 
   const detalhes = new BookDetailsPage(page);
@@ -26,10 +26,10 @@ test('CT-FE-011 - Add favorite book', async ({ page }) => {
   await page.goto('http://localhost:3000/detalhes.html?id=1');
 
   const alerta = capturarAlert(page);
-  await detalhes.clicarFavoritar();
+  await detalhes.clicarDesfavoritar();
   const msg = await alerta;
 
-  expect(msg).toContain('Adicionado aos favoritos!');
+  expect(msg).toContain('Removido dos favoritos!');
 
 });
 });

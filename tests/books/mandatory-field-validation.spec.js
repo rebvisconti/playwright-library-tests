@@ -1,9 +1,9 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { BooksPage } from '../POM/bookspage.js';
+import { LoginPage } from '../../POM/login.js';
+import { BooksPage } from '../../POM/bookspage.js';
 
-test.describe('CT-FE-008 - Mandatory Field Validation', () => {
+test.describe('CT-FE-008: Mandatory Field Validation', () => {
 
   test.beforeEach(async ({ page }) => {
     const login = new LoginPage(page);
@@ -15,7 +15,7 @@ test.describe('CT-FE-008 - Mandatory Field Validation', () => {
     await login.clicarEntrar();
   });
 
-test('CT-FE-008 - Mandatory Field Validation', async ({ page }) => {
+test('CT-FE-008: Mandatory Field Validation', async ({ page }) => {
 
   await page.addInitScript(() => {
     localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));

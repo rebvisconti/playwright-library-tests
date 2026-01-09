@@ -1,9 +1,9 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { capturarAlert } from '../helpers/capturaralert.js';
+import { LoginPage } from '../../POM/login.js';
+import { capturarAlert } from '../../helpers/capturaralert.js';
 
-test('CT-FE-004: login - invalid credencials', async ({ page }) => {
+test('CT-FE-004: Login with Invalid Credentials', async ({ page }) => {
 
   const login = new LoginPage(page);
 

@@ -1,7 +1,7 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';        
-import { RegisterPage } from '../POM/register.js';
+import { RegisterPage } from '../../POM/register.js';
 
 test('CT-FE-001: Complete Registration Flow', async ({ page }) => {
   const registerPage = new RegisterPage(page);

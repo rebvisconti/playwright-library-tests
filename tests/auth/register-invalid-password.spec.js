@@ -1,10 +1,10 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
-import { RegisterPage} from '../POM/register.js';
-import { capturarAlert } from '../helpers/capturaralert';
+import { RegisterPage} from '../../POM/register.js';
+import { capturarAlert } from '../../helpers/capturaralert.js';
 
-test('CT-FE-002: register invalid password', async ({ page }) => {
+test('CT-FE-002: Register with Invalid Password', async ({ page }) => {
 
   const register = new RegisterPage(page);
 

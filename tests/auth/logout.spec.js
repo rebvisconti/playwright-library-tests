@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { Header } from '../POM/Header.js';
+import { LoginPage } from '../../POM/login.js';
+import { Header } from '../../POM/Header.js';
 
-test.describe('CT-FE-016 - Logout of the system', () => {  
+test.describe('CT-FE-016: Logout from the System', () => {  
     test.beforeEach(async ({ page }) => {
         const login = new LoginPage(page);
         await page.goto('http://localhost:3000/login.html');
@@ -11,7 +11,7 @@ test.describe('CT-FE-016 - Logout of the system', () => {
         await login.clicarEntrar();
     });
 
-test('CT-FE-016 - Logout of the system', async ({ page }) => {
+test('CT-FE-016: Logout from the System', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));
   });

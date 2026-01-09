@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { RegisterPage } from '../POM/register.js';
+import { RegisterPage } from '../../POM/register.js';
 import { faker } from '@faker-js/faker';
 
-test('CT-FE: register 4 characters password', async ({ page }) => {
+test('CT-FE-017: Register with Short Password', async ({ page }) => {
 
 const register = new RegisterPage(page);
 

@@ -1,9 +1,9 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { BookDetailsPage } from '../POM/bookdetailspage.js';
+import { LoginPage } from '../../POM/login.js';
+import { BookDetailsPage } from '../../POM/bookdetailspage.js';
 
-test.describe ('CT-FE-010 - book details', () => {
+test.describe ('CT-FE-010: View Book Detail', () => {
 
   test.beforeEach(async ({ page }) => {
     const login = new LoginPage(page);
@@ -16,7 +16,7 @@ test.describe ('CT-FE-010 - book details', () => {
   });
 
 
-test('CT-FE-010 - book details', async ({ page }) => {
+test('CT-FE-010: View Book Detail', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));
   });

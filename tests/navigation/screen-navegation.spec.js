@@ -1,9 +1,9 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { Header } from '../POM/header.js';
+import { LoginPage } from '../../POM/login.js';
+import { Header } from '../../POM/header.js';
 
-  test.describe('CT-FE-009 - screen navegation', () => {
+  test.describe('CT-FE-009: Screen Navigation', () => {
 
   test.beforeEach(async ({ page }) => {
     
@@ -16,7 +16,7 @@ import { Header } from '../POM/header.js';
     await login.clicarEntrar();
   });
   
-  test('CT-FE-009 - screen navegation', async ({ page }) => {
+  test('CT-FE-009: Screen Navigation', async ({ page }) => {
   
     await page.addInitScript(() => {
     localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));

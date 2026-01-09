@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker/locale/pt_BR';
-import { LoginPage } from '../POM/login.js';
-import { BooksPage } from '../POM/bookspage.js';
-import { capturarAlert } from '../helpers/capturaralert.js';
+import { LoginPage } from '../../POM/login.js';
+import { BooksPage } from '../../POM/bookspage.js';
+import { capturarAlert } from '../../helpers/capturaralert.js';
 
-test.describe('CT-FE-007 - add new book', () => {
+test.describe('CT-FE-007: Add New Book', () => {
 
     const nomeLivro = faker.commerce.productName(); 
     const autorLivro = faker.person.fullName();
@@ -23,7 +23,7 @@ test.describe('CT-FE-007 - add new book', () => {
         await login.clicarEntrar();
     });
 
-    test('Add a book with all the data.', async ({ page }) => {
+    test('CT-FE-007: Add New Book', async ({ page }) => {
 
         const livros = new BooksPage(page);
 

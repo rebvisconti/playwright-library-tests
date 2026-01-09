@@ -1,10 +1,10 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POM/login.js';
-import { FavoritesPage } from '../POM/favorite-page.js';
+import { LoginPage } from '../../POM/login.js';
+import { FavoritesPage } from '../../POM/favorite-page.js';
 
 
-test.describe('CT-FE-013 - list favorite book', () => {  
+test.describe('CT-FE-013: List Favorite Books', () => {  
 test.beforeEach(async ({ page }) => {
     const login = new LoginPage(page);
 
@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
   });
 
 
-test('CT-FE-013 - list favorite book', async ({ page }) => {
+test('CT-FE-013: List Favorite Books', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));
     localStorage.setItem('favoritos', JSON.stringify([1]));
