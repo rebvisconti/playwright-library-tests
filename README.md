@@ -82,6 +82,7 @@ This project was created as part of my learning journey as a **Quality Assurance
 │   └── favorites.spec.js
 ├── playwright.config.js
 └── README.md
+```
 
 
 ## 🌱 Learning Highlights
