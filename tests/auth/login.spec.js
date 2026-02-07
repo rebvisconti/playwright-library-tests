@@ -22,7 +22,7 @@ test('CT-FE-003: Login Successfully', async ({ page }) => {
 
   await expect(page).toHaveURL('http://localhost:3000/dashboard.html');
 
-  const userName = page.getByText('Admin'); 
+  const userName = page.locator('#nomeUsuario') 
   await expect(userName).toHaveText(/admin/i);
 
 });

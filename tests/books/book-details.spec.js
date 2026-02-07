@@ -13,6 +13,7 @@ test.describe ('CT-FE-010: View Book Detail', () => {
     await login.preencherEmail('admin@biblioteca.com');
     await login.preencherSenha('123456');
     await login.clicarEntrar();
+await page.waitForLoadState('networkidle');
   });
 
 

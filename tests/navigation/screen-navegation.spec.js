@@ -14,6 +14,7 @@ import { Header } from '../../POM/header.js';
     await login.preencherEmail('admin@biblioteca.com');
     await login.preencherSenha('123456');
     await login.clicarEntrar();
+    await page.waitForLoadState('networkidle');
   });
   
   test('CT-FE-009: Screen Navigation', async ({ page }) => {
@@ -25,6 +26,7 @@ import { Header } from '../../POM/header.js';
       const header = new Header(page);
 
    await page.goto('http://localhost:3000/dashboard.html');
+   await page.waitForLoadState('networkidle');
 
    await header.navegarLivros();
    await expect(page).toHaveURL(/livros/);

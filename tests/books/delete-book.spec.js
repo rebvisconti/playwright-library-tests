@@ -9,6 +9,7 @@ test.describe('CT-FE-014: Delete Book Successfully', () => {
         await login.preencherEmail('admin@biblioteca.com');
         await login.preencherSenha('123456');
         await login.clicarEntrar();
+        await page.waitForLoadState('networkidle');
     });
 
 test.describe('CT-FE-014: Delete Book Successfully', () => {
@@ -20,8 +21,9 @@ test.describe('CT-FE-014: Delete Book Successfully', () => {
     });
 
     const detalhes = new BookDetailsPage(page);
-        
-    await page.goto('http://localhost:3000/detalhes.html?id=13');
+    
+    // TODO: Aqui pode dar erro se tiver mais de um livro criado, pois ele esta pegando o id do primeiro livro criado, e não do ultimo livro criado
+    await page.goto('http://localhost:3000/detalhes.html?id=1');
     await expect(detalhes.nome).toBeVisible();
 
     page.once('dialog', async dialog => {

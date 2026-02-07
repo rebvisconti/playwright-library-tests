@@ -12,6 +12,7 @@ test.beforeEach(async ({ page }) => {
     await login.preencherEmail('admin@biblioteca.com');
     await login.preencherSenha('123456');
     await login.clicarEntrar();
+await page.waitForLoadState('networkidle');
   });
 
 

@@ -15,6 +15,7 @@ test('CT-FE-004: Login with Invalid Credentials', async ({ page }) => {
   const alerta = capturarAlert (page);
 
   await login.clicarEntrar();
+await page.waitForLoadState('networkidle');
 
   const msg = await alerta;
 

@@ -9,6 +9,7 @@ test.describe('CT-FE-015: Cancel Book Deletion', () => {
         await login.preencherEmail('admin@biblioteca.com');
         await login.preencherSenha('123456');
         await login.clicarEntrar();
+await page.waitForLoadState('networkidle');
     });
 
     test('CT-FE-015: Cancel Book Deletion', async ({ page }) => {

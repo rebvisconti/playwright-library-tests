@@ -23,7 +23,7 @@ test('CT-FE-002: Register with Invalid Password', async ({ page }) => {
   // espera a mensagem aparecer
   const msg = await alerta;
 
-  expect(msg).toBe('As senhas não coincidem!');
+  expect(msg).toBe('As senhas não conferem.');
 
   // valida que continua na página de registro
   await expect(page).toHaveURL('http://localhost:3000/registro.html');

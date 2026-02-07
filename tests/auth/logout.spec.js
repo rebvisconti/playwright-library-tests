@@ -9,6 +9,9 @@ test.describe('CT-FE-016: Logout from the System', () => {
         await login.preencherEmail('admin@biblioteca.com');
         await login.preencherSenha('123456');
         await login.clicarEntrar();
+        
+        // Espera pelo dashboard carregar completamente
+        await page.waitForLoadState('networkidle');
     });
 
 test('CT-FE-016: Logout from the System', async ({ page }) => {

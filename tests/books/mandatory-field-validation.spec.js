@@ -13,6 +13,7 @@ test.describe('CT-FE-008: Mandatory Field Validation', () => {
     await login.preencherEmail('admin@biblioteca.com');
     await login.preencherSenha('123456');
     await login.clicarEntrar();
+await page.waitForLoadState('networkidle');
   });
 
 test('CT-FE-008: Mandatory Field Validation', async ({ page }) => {

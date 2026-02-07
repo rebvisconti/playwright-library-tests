@@ -21,6 +21,8 @@ test.describe('CT-FE-007: Add New Book', () => {
         await login.preencherEmail('admin@biblioteca.com');
         await login.preencherSenha('123456');
         await login.clicarEntrar();
+        await page.waitForLoadState('networkidle');
+        
     });
 
     test('CT-FE-007: Add New Book', async ({ page }) => {
@@ -28,6 +30,7 @@ test.describe('CT-FE-007: Add New Book', () => {
         const livros = new BooksPage(page);
 
         await page.goto('http://localhost:3000/livros.html');
+        await page.waitForLoadState('networkidle');
 
         await livros.preencherNome(nomeLivro);
         await livros.preencherAutor(autorLivro);

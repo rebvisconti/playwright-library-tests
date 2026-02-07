@@ -5,8 +5,8 @@ export class Header {
         this.page = page;
 
         this.btnDashboard = page.getByRole('link', { name: 'Dashboard' });
-        this.btnLivros = page.getByRole('link', { name: 'Gerenciar Livros' });
-        this.btnFavoritos = page.getByRole('link', { name: 'Meus Favoritos' });
+        this.btnLivros = page.getByRole('link', { name: 'Livros' });
+        this.btnFavoritos = page.getByRole('link', { name: 'Favoritos' });
         this.btnLogout = page.getByRole('button', { name: 'Sair' });
 
         this.userName = page.locator("#nomeUsuario")

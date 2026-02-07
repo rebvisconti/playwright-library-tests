@@ -14,6 +14,7 @@ test.describe('CT-FE-006: View Dashboard with Statistics', () => {
   await login.preencherEmail('admin@biblioteca.com');
   await login.preencherSenha('123456');
   await login.clicarEntrar();
+await page.waitForLoadState('networkidle');
   
   });
 
