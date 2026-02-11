@@ -35,18 +35,18 @@ https://github.com/rebvisconti/playwright-library-tests
 
 ---
 
-## 🏗️ Project Architecture
+## 📁 Project Architecture
 The project is structured to separate UI and API concerns clearly.
 
 ```
 PLAYWRIGHT-LIBRARY-TESTS
 │
-├── helpers/                # API service layer
+├── 📁 helpers/                # API service layer
 │   ├── book.api.js
 │   ├── usuario.api.js
 │   └── capturarAlert.js
 │
-├── POM/                    # Page Object Model (UI abstraction)
+├── 📁 POM/                    # Page Object Model (UI abstraction)
 │   ├── loginpage.js
 │   ├── registerpage.js
 │   ├── bookspage.js
@@ -55,19 +55,40 @@ PLAYWRIGHT-LIBRARY-TESTS
 │   ├── favoritepage.js
 │   └── headerpage.js
 │
-├── tests/
-│   ├── api/                # API test suite
+├── 📁 tests/
+│   ├── 📁 api/                # API test suite
 │   │   ├── books-api.spec.js
 │   │   ├── dashboard-api.spec.js
 │   │   ├── favorites-api.spec.js
 │   │   └── users-api.spec.js
 │   │
-│   ├── ui-auth/
-│   ├── ui-books/
-│   ├── ui-dashboard/
-│   ├── ui-favorites/
-│   └── ui-navigation/
-│
+│   ├── 📁 ui-auth/            # UI test suite
+|       ├── login-invalid-credentials.spec.js
+|       ├── login.spec.js
+|       ├── logout.spec.js
+|       ├── register-invalid-password.spec.js
+|       ├── register-short-password.spec.js
+|       └── register.spec.js
+|
+│   ├── 📁 ui-books/
+│       ├── add-book.spec.js
+│       ├── book-details.spec.js
+│       ├── cancel-delete-book.spec.js
+│       ├── delete-book.spec.js
+│       └── mandatory-field-validation.spec.js
+|
+│   ├── 📁 ui-dashboard/
+│       ├── view-dashboard-with-statistics.spec.js
+|
+│   ├── 📁 ui-favorites/
+│       ├── add-favorite-book.spec.js
+│       ├── list-favorite-books.spec.js
+│       └── remove-favorite-book.spec.js
+|
+│   └── 📁 ui-navigation/
+│       ├── check-route-protection.spec.js
+│       └── screen-navegation.spec.js
+|
 ├── playwright.config.js
 └── README.md
 ```
@@ -86,7 +107,7 @@ PLAYWRIGHT-LIBRARY-TESTS
 * Short password validation
 
 ### 📚 Books Management
-UI
+### UI
 * Add new book
 * Mandatory field validation
 * View book details
@@ -117,7 +138,7 @@ UI
 
 ---
 
-## ⚙️ Pre requisites
+## ⚙️ Prerequisites
 Make sure you have installed:
 * Node.js (v18+ recommended)
 * npm
@@ -132,12 +153,13 @@ http://localhost:3000
 ```
 git clone https://github.com/rebvisconti/playwright-library-tests.git
 cd playwright-library-tests
+npm install
+npm start
 ```
 ---
 
 ## 📦 Install Dependencies
 ```
-npm install
 Install Playwright browsers:
 npx playwright install
 ```
