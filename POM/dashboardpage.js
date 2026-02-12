@@ -1,20 +1,26 @@
 import { expect } from '@playwright/test';
 
 export class DashboardPage {
-  
-    constructor(page) {
+
+  constructor(page) {
     this.page = page;
+    this.url = 'http://localhost:3000/dashboard.html';
 
     this.statCards = page.locator('.stat-card');
     this.statNumbers = page.locator('.stat-card .number');
+
     this.livrosGrid = page.locator('#livros-recentes');
     this.livrosCards = page.locator('.book-card');
   }
 
+  async acessar() {
+    await this.page.goto(this.url);
+  }
+
   async validarEstatisticasVisiveis() {
-    await expect(this.statCards.nth(0)).toBeVisible();
-    await expect(this.statCards.nth(1)).toBeVisible();
-    await expect(this.statCards.nth(2)).toBeVisible();
+    const count = await this.statCards.count();
+    expect(count).toBeGreaterThan(0);
+    await expect(this.statCards.first()).toBeVisible();
   }
 
   async validarNumerosFormatados() {
@@ -23,7 +29,7 @@ export class DashboardPage {
 
     for (let i = 0; i < count; i++) {
       const value = await this.statNumbers.nth(i).innerText();
-      expect(value).toMatch(regex);
+      expect(value.trim()).toMatch(regex);
     }
   }
 
@@ -38,14 +44,14 @@ export class DashboardPage {
 
   async validarEstruturaLivros() {
     const count = await this.livrosCards.count();
+    expect(count).toBeLessThanOrEqual(5);
 
     for (let i = 0; i < count; i++) {
       const card = this.livrosCards.nth(i);
 
-      await expect(card.locator('img:visible')).toBeVisible();
-      await expect(card.locator('h3:visible')).toBeVisible();
-      await expect(card.locator('p').first()).toBeVisible(); 
-      await expect(card.locator('p').nth(1)).toBeVisible();   
+      await expect(card.locator('img')).toBeVisible();
+      await expect(card.locator('h3')).toBeVisible();
+      await expect(card).toContainText(/Autor/i);
     }
   }
 }

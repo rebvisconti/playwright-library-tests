@@ -1,20 +1,17 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../POM/login.js';
-import { DashboardPage } from '../../POM/dashboard.js';
+import { test } from '@playwright/test';
+import { LoginPage } from '../../POM/loginpage.js';
+import { DashboardPage } from '../../POM/dashboardpage.js';
 
 test.describe('CT-FE-006: View Dashboard with Statistics', () => {
 
   test.beforeEach(async ({ page }) => {
-    
     const login = new LoginPage(page);
+    const dashboard = new DashboardPage(page);
 
-  await page.goto('http://localhost:3000/login.html');
-
-  await login.preencherEmail('admin@biblioteca.com');
-  await login.preencherSenha('123456');
-  await login.clicarEntrar();
-  
+    await login.loginAdmin();
+    await page.waitForLoadState('networkidle');
+    await dashboard.acessar();
   });
 
   test('CT-FE-006: View Dashboard with Statistics', async ({ page }) => {

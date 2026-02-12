@@ -1,35 +1,30 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../POM/login.js';
+import { LoginPage } from '../../POM/loginpage.js';
 import { BooksPage } from '../../POM/bookspage.js';
 
 test.describe('CT-FE-008: Mandatory Field Validation', () => {
 
   test.beforeEach(async ({ page }) => {
     const login = new LoginPage(page);
-
-    await page.goto('http://localhost:3000/login.html');
-
-    await login.preencherEmail('admin@biblioteca.com');
-    await login.preencherSenha('123456');
-    await login.clicarEntrar();
+    await login.loginAdmin();
   });
 
-test('CT-FE-008: Mandatory Field Validation', async ({ page }) => {
+  test('CT-FE-008: Mandatory Field Validation', async ({ page }) => {
 
-  await page.addInitScript(() => {
-    localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));
-  });
+    await page.addInitScript(() => {
+      localStorage.setItem('user', JSON.stringify({ nome: 'Admin' }));
+    });
 
-  const livros = new BooksPage(page);
+    const livros = new BooksPage(page);
 
-  await page.goto('http://localhost:3000/livros.html');
+    await livros.acessar();
 
-  const nome = livros.inputNome;
-  const autor = livros.inputAutor;
-  const paginas = livros.inputPaginas;
-  
-     await livros.clicarAdicionar();
+    const nome = livros.inputNome;
+    const autor = livros.inputAutor;
+    const paginas = livros.inputPaginas;
+
+    await livros.clicarAdicionar();
 
     let nomeValid = await nome.evaluate(/** @param {HTMLInputElement} i */ i => i.checkValidity());
     expect(nomeValid).toBe(false);
@@ -49,5 +44,5 @@ test('CT-FE-008: Mandatory Field Validation', async ({ page }) => {
 
     let paginasValid = await paginas.evaluate(/** @param {HTMLInputElement} i */ i => i.checkValidity());
     expect(paginasValid).toBe(false);
-}); 
+  });
 });
