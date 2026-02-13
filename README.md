@@ -210,8 +210,7 @@ This structure allows easy expansion and CI/CD integration.
 
 ---
 
-# 🌱 Professional Growth
-
+## 🌱 Professional Growth
 **This project strengthened my ability to:**
 
 * Architect scalable and maintainable automation frameworks
