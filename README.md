@@ -210,13 +210,17 @@ This structure allows easy expansion and CI/CD integration.
 
 ---
 
-## 🌱 Professional Growth
-This project strengthened my ability to:
-* Architect scalable automation frameworks
-* Combine UI and API automation in a single project
-* Apply real QA strategy beyond “tests passing”
-* Design maintainable and reusable test structures
-* Think critically about system behavior and risk
+# 🌱 Professional Growth
+
+**This project strengthened my ability to:**
+
+* Architect scalable and maintainable automation frameworks
+* Combine UI and API automation within a unified test strategy
+* Leverage API automation for intelligent test data setup, mocking and environment cleanup
+* Design isolated and reliable test scenarios with controlled data
+* Apply real QA strategy beyond “tests passing”, focusing on business rules and risk
+* Build reusable and resilient test structures using clean architecture principles
+* Think critically about system behavior, edge cases, and failure scenarios
 
 ---
 
