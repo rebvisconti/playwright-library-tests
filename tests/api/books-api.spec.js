@@ -1,17 +1,11 @@
 import { test, expect } from '@playwright/test';
-import {
-  criarLivroViaAPI,
-  deletarLivroViaAPI,
-  atualizarLivroViaAPI,
-  listarLivrosViaAPI,
-  buscarLivroPorIdViaAPI
-} from '../../helpers/book.api.js';
+import { booksApi } from '../../helpers/book.api.js'; 
 
 test.describe('CT-API: Books', () => {
-  let livroId;
 
   test('CT-API-005: List All Books', async ({ request }) => {
-    const livros = await listarLivrosViaAPI(request);
+    const livros = await booksApi.listAll(request);
+    
     expect(Array.isArray(livros)).toBe(true);
     livros.forEach(l => {
       expect(l.id).toBeGreaterThan(0);
@@ -21,42 +15,44 @@ test.describe('CT-API: Books', () => {
   });
 
   test('CT-API-006: Get Book by ID (Existing)', async ({ request }) => {
-    const livro = await buscarLivroPorIdViaAPI(request, 1);
+    // Usando ID 1 como base, mas o ideal seria criar um antes
+    const livro = await booksApi.getById(request, 1);
+    
     expect(livro.id).toBe(1);
     expect(livro.nome).not.toBe('');
   });
 
   test('CT-API-007: Get Book by ID (Non-existent)', async ({ request }) => {
-    const response = await request.get('http://localhost:3000/livros/9999');
-    expect(response.status()).toBe(404);
-    const body = await response.json();
-    expect(body.mensagem).toBe('Livro não encontrado');
+    // Aqui usamos o expect().rejects porque o seu helper dá throw em 404
+    await expect(booksApi.getById(request, 9999))
+      .rejects.toThrow(/404/);
   });
 
   test('CT-API-008: Add New Book', async ({ request }) => {
-    const novoLivro = await criarLivroViaAPI(request, {
-      nome: 'Código Limpo',
+    const novoLivro = await booksApi.create(request, {
+      nome: `Código Limpo ${Date.now()}`, // Timestamp para evitar duplicidade
       autor: 'Robert C. Martin',
       paginas: 425,
       descricao: 'Manual de boas práticas',
       imagem: 'https://exemplo.com/imagem.jpg'
     });
+
     expect(novoLivro.id).toBeGreaterThan(0);
-    expect(novoLivro.nome).toBe('Código Limpo');
+    expect(novoLivro.nome).toContain('Código Limpo');
   });
 
   test('CT-API-009: Update Existing Book', async ({ request }) => {
-    // Primeiro cria
-    const livro = await criarLivroViaAPI(request, {
+    // 1. Setup via API
+    const livro = await booksApi.create(request, {
       nome: 'Livro Atualizar',
       autor: 'Autor X',
       paginas: 100,
       descricao: 'Descrição antiga',
       imagem: 'https://via.placeholder.com/150'
     });
-    livroId = livro.id;
 
-    const atualizado = await atualizarLivroViaAPI(request, livroId, {
+    // 2. Ação
+    const atualizado = await booksApi.update(request, livro.id, {
       nome: 'Clean Code - Edição Atualizada',
       autor: 'Robert C. Martin',
       paginas: 464,
@@ -64,26 +60,27 @@ test.describe('CT-API: Books', () => {
       imagemUrl: 'https://exemplo.com/nova-imagem.jpg'
     });
 
-    expect(atualizado.id).toBe(livroId);
+    // 3. Validação
+    expect(atualizado.id).toBe(livro.id);
     expect(atualizado.nome).toBe('Clean Code - Edição Atualizada');
 
-    await deletarLivroViaAPI(request, livroId); // cleanup
+    // Cleanup
+    await booksApi.delete(request, livro.id);
   });
 
   test('CT-API-010: Delete Book', async ({ request }) => {
-  const livro = await criarLivroViaAPI(request, {
-    nome: 'Livro para deletar',
-    autor: 'Autor',
-    paginas: 100,
-    descricao: 'Teste delete',
-    imagem: 'https://via.placeholder.com/150'
+    const livro = await booksApi.create(request, {
+      nome: 'Livro para deletar',
+      autor: 'Autor',
+      paginas: 100,
+      descricao: 'Teste delete',
+      imagem: 'https://via.placeholder.com/150'
+    });
+
+    await booksApi.delete(request, livro.id);
+
+    // Validar que não existe mais (o helper deve lançar erro 404)
+    await expect(booksApi.getById(request, livro.id))
+      .rejects.toThrow(/404/);
   });
-
-  // Deletar
-  await deletarLivroViaAPI(request, livro.id);
-
-  // Validar que não existe mais
-  const response = await request.get(`/livros/${livro.id}`);
-  expect(response.status()).toBe(404);
-});
 });

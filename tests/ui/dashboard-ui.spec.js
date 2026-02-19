@@ -3,7 +3,7 @@ import { test } from '@playwright/test';
 import { LoginPage } from '../../POM/loginpage.js';
 import { DashboardPage } from '../../POM/dashboardpage.js';
 
-test.describe('CT-FE-006: View Dashboard with Statistics', () => {
+test.describe('Module: Statistics', () => {
 
   test.beforeEach(async ({ page }) => {
     const login = new LoginPage(page);
